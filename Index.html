@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Editable Site</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      background: #f4f4f4;
+    }
+    #editor {
+      width: 100%;
+      height: 300px;
+      display: none;
+    }
+    #view {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+    }
+    button {
+      margin-bottom: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <button onclick="toggleEdit()">Edit</button>
+  <div id="view" contenteditable="false">
+    <h1>Hello, world!</h1>
+    <p>This is your website. Click 'Edit' to make changes.</p>
+  </div>
+  <textarea id="editor"></textarea>
+
+  <script>
+    let editing = false;
+    const view = document.getElementById('view');
+    const editor = document.getElementById('editor');
+
+    function toggleEdit() {
+      if (!editing) {
+        editor.value = view.innerHTML;
+        view.style.display = 'none';
+        editor.style.display = 'block';
+        event.target.textContent = 'Save';
+      } else {
+        view.innerHTML = editor.value;
+        view.style.display = 'block';
+        editor.style.display = 'none';
+        event.target.textContent = 'Edit';
+      }
+      editing = !editing;
+    }
+  </script>
+</body>
+</html>
